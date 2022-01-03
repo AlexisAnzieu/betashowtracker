@@ -5,6 +5,7 @@
 
     let login = "";
     let password = "";
+    let errors: { code: number; text: string };
     const sendLogin = async () => {
         const hashedPassword = md5(password);
         const res = await fetch(
@@ -13,20 +14,39 @@
         );
 
         const json = await res.json();
-        betaseries_token.set(json.token);
-        localStorage.setItem("betaseries_token", json.token);
+        if (json.errors.length) {
+            errors = json.errors[0];
+        } else {
+            betaseries_token.set(json.token);
+            localStorage.setItem("betaseries_token", json.token);
+        }
     };
 </script>
 
 <form on:submit|preventDefault={sendLogin}>
-    <FormField name="Peudo" required>
+    <FormField
+        name="Peudo"
+        required
+        errors={[errors?.code === 4002 && errors.text]}
+    >
         <TextField bind:value={login} />
     </FormField>
-    <FormField name="Mot de passe" required>
+    <FormField
+        name="Mot de passe"
+        required
+        errors={[errors?.code === 4003 && errors.text]}
+    >
         <TextField type="password" bind:value={password} />
     </FormField>
-    <div style="margin-left: 350px;">
-        <Button type="submit" filled>Se connecter</Button>
+    <div style="margin-left: 250px;">
+        <Button style="display:inline" type="submit" filled>Se connecter</Button
+        >
+        <a
+            target="_blank"
+            style="text-decoration: none"
+            href="https://www.betaseries.com/inscription/"
+            ><Button style="display:inline" outline>S'enregistrer</Button></a
+        >
     </div>
 </form>
 

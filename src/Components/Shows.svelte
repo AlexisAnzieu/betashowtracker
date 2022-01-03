@@ -39,7 +39,7 @@
                     .user.next.title}
             </Button>
             <ProgressBar
-                width={600}
+                width={700}
                 textSize={0}
                 height={2}
                 series={{
