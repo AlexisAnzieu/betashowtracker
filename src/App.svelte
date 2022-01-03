@@ -10,7 +10,7 @@
 </script>
 
 <main>
-    <h3>Beta Show Tracker</h3>
+    <h2>Beta Show Tracker</h2>
     {#if !token}
         <LoginComponent />
     {:else}

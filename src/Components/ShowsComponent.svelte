@@ -1,5 +1,5 @@
 <script lang="ts">
-    import { Button, Loading } from "attractions";
+    import { Button, Loading, Divider } from "attractions";
     import { CheckIcon } from "svelte-feather-icons";
     import ProgressBar from "@okrad/svelte-progressbar";
 
@@ -39,23 +39,50 @@
     <Loading />
 {:then shows}
     {#each shows as show}
-        <div style="margin: 10px;display:grid">
-            <Button on:click={() => checkShow(show.user.next.id)}>
-                <CheckIcon size="20" class="mr" />
-                {show.title} - {show.user.next.code} - {show.user.next.date} - {show
-                    .user.next.title}
-            </Button>
-            <ProgressBar
-                width={700}
-                textSize={0}
-                height={2}
-                series={{
-                    perc: show.user.status,
-                    color: "#3B8DD0",
-                    thin: "10px",
-                }}
-            />
+        <div style="margin: 10px;display:flex">
+            <div style="width: 180px;">
+                <img
+                    height="180px"
+                    src={show.images.poster || "https://picsum.photos/768/188"}
+                    alt=""
+                />
+            </div>
+            <div style="width: 450px;">
+                <h2>
+                    {show.title}
+                </h2>
+
+                <div style="width: 450px;display:flex">
+                    <div style="width: 100px;display:flex">
+                        <Button
+                            filled
+                            round
+                            style="margin:20px"
+                            on:click={() => checkShow(show.user.next.id)}
+                        >
+                            <CheckIcon size="20" class="mr" />
+                        </Button>
+                    </div>
+                    <div style="width: 400px;">
+                        <h3>{show.user.next.code} - {show.user.next.title}</h3>
+                    </div>
+                </div>
+            </div>
+            <div style="width: 100px;margin-top:50px">
+                <div style="width:100%;display:inline">
+                    <ProgressBar
+                        textSize={150}
+                        style="radial"
+                        width={100}
+                        series={{
+                            perc: Math.round(show.user.status),
+                            color: "#3B8DD0",
+                        }}
+                    />
+                </div>
+            </div>
         </div>
+        <Divider />
     {/each}
 {:catch error}
     <p style="color: red">{error.message}</p>

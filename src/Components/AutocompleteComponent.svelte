@@ -34,8 +34,9 @@
             { method: "POST" }
         );
         const result = await res.json();
+        const fetchedShows = result.shows ? result.shows : [result.show];
         showsStore.update((shows) =>
-            [...shows, ...result.shows].sort((a, b) =>
+            [...shows, ...fetchedShows].sort((a, b) =>
                 a.title.localeCompare(b.title)
             )
         );
@@ -46,6 +47,7 @@
 <main style="display: flex;">
     <div style="width: 500px;">
         <Autocomplete
+            minSearchLength={2}
             placeholder="Rechercher une série"
             {getOptions}
             {selection}
