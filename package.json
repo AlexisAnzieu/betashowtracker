@@ -22,6 +22,8 @@
     "vite": "^2.7.2"
   },
   "dependencies": {
-    "md5": "^2.3.0"
+    "@types/md5": "^2.3.1",
+    "md5": "^2.3.0",
+    "svelte-feather-icons": "^3.5.0"
   }
 }
