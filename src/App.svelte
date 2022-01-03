@@ -1,7 +1,11 @@
 <script lang="ts">
     import Login from "./Components/Login.svelte";
     import Shows from "./Components/Shows.svelte";
-    const token = localStorage.getItem("betaseries_token");
+    import { betaseries_token } from "./stores";
+    let token = localStorage.getItem("betaseries_token");
+    betaseries_token.subscribe((value) => {
+        token = value;
+    });
 </script>
 
 <main>
@@ -20,18 +24,7 @@
     }
 
     main {
-        text-align: center;
         padding: 1em;
         margin: 0 auto;
-    }
-
-    h1 {
-        color: #ff3e00;
-        text-transform: uppercase;
-        font-size: 4rem;
-        font-weight: 100;
-        line-height: 1.1;
-        margin: 2rem auto;
-        max-width: 14rem;
     }
 </style>

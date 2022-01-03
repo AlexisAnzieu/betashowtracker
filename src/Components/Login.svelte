@@ -1,6 +1,7 @@
 <script lang="ts">
     import { Button, FormField, TextField } from "attractions";
     import md5 from "md5";
+    import { betaseries_token } from "../stores";
 
     let login = "";
     let password = "";
@@ -12,23 +13,21 @@
         );
 
         const json = await res.json();
+        betaseries_token.set(json.token);
         localStorage.setItem("betaseries_token", json.token);
     };
 </script>
 
 <form on:submit|preventDefault={sendLogin}>
-    <FormField
-        name="Compte utilisateur"
-        help="Write this and not that."
-        required
-    >
+    <FormField name="Peudo" required>
         <TextField bind:value={login} />
     </FormField>
     <FormField name="Mot de passe" required>
         <TextField type="password" bind:value={password} />
     </FormField>
-
-    <Button type="submit" filled>Se connecter</Button>
+    <div style="margin-left: 350px;">
+        <Button type="submit" filled>Se connecter</Button>
+    </div>
 </form>
 
 <style>

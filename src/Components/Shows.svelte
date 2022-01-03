@@ -1,6 +1,8 @@
 <script lang="ts">
     import { Button, Loading } from "attractions";
     import { CheckIcon } from "svelte-feather-icons";
+    import ProgressBar from "@okrad/svelte-progressbar";
+
     const token = localStorage.getItem("betaseries_token");
 
     const getShows = async () => {
@@ -30,12 +32,22 @@
     <Loading />
 {:then shows}
     {#each shows as show}
-        <div style="margin: 5px;">
+        <div style="margin: 10px;display:grid">
             <Button on:click={() => checkShow(show.user.next.id)}>
                 <CheckIcon size="20" class="mr" />
                 {show.title} - {show.user.next.code} - {show.user.next.date} - {show
                     .user.next.title}
             </Button>
+            <ProgressBar
+                width={600}
+                textSize={0}
+                height={2}
+                series={{
+                    perc: show.user.status,
+                    color: "#3B8DD0",
+                    thin: "10px",
+                }}
+            />
         </div>
     {/each}
 {:catch error}
