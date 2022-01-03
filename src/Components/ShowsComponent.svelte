@@ -3,7 +3,11 @@
     import { CheckIcon } from "svelte-feather-icons";
     import ProgressBar from "@okrad/svelte-progressbar";
 
-    const token = localStorage.getItem("betaseries_token");
+    import { tokenStore, showsStore } from "../stores";
+    let token: string;
+    tokenStore.subscribe((value) => {
+        token = value;
+    });
 
     const getShows = async () => {
         const res = await fetch(
@@ -11,7 +15,7 @@
             { method: "GET" }
         );
         const shows = await res.json();
-        return shows.shows;
+        showsStore.set(shows.shows);
     };
 
     const checkShow = async (id: number) => {
@@ -21,10 +25,14 @@
         );
 
         await res.json();
-        shows = getShows();
+        getShows();
     };
 
-    let shows = getShows();
+    let shows;
+    showsStore.subscribe((value) => {
+        shows = value;
+    });
+    getShows();
 </script>
 
 {#await shows}

@@ -1,7 +1,7 @@
 <script lang="ts">
     import { Button, FormField, TextField } from "attractions";
     import md5 from "md5";
-    import { betaseries_token } from "../stores";
+    import { tokenStore } from "../stores";
 
     let login = "";
     let password = "";
@@ -17,8 +17,8 @@
         if (json.errors.length) {
             errors = json.errors[0];
         } else {
-            betaseries_token.set(json.token);
-            localStorage.setItem("betaseries_token", json.token);
+            tokenStore.set(json.token);
+            localStorage.setItem("tokenStore", json.token);
         }
     };
 </script>

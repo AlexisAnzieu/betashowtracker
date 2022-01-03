@@ -1,9 +1,10 @@
 <script lang="ts">
-    import Login from "./Components/Login.svelte";
-    import Shows from "./Components/Shows.svelte";
-    import { betaseries_token } from "./stores";
-    let token = localStorage.getItem("betaseries_token");
-    betaseries_token.subscribe((value) => {
+    import AutocompleteComponent from "./Components/AutocompleteComponent.svelte";
+    import LoginComponent from "./Components/LoginComponent.svelte";
+    import ShowsComponent from "./Components/ShowsComponent.svelte";
+    import { tokenStore } from "./stores";
+    let token = localStorage.getItem("tokenStore");
+    tokenStore.subscribe((value) => {
         token = value;
     });
 </script>
@@ -11,9 +12,10 @@
 <main>
     <h3>Beta Show Tracker</h3>
     {#if !token}
-        <Login />
+        <LoginComponent />
     {:else}
-        <Shows />
+        <AutocompleteComponent />
+        <ShowsComponent />
     {/if}
 </main>
 

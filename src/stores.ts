@@ -1,3 +1,4 @@
 import { writable } from 'svelte/store';
 
-export const betaseries_token = writable(localStorage.getItem("betaseries_token"));
+export const tokenStore = writable(localStorage.getItem("tokenStore"));
+export const showsStore = writable([]);
