@@ -9,7 +9,7 @@
 </script>
 
 <main>
-    <h3>Betaseries</h3>
+    <h3>Beta Show Tracker</h3>
     {#if !token}
         <Login />
     {:else}

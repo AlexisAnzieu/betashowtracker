@@ -7,5 +7,6 @@
         "default_title": "Beta Show Tracker"
     },
     "permissions": ["storage"],
-    "description": "Cette extension vous permet de suivre vos séries TV en provenance de la plateforme Betaseries."
+    "description": "Cette extension vous permet de suivre vos séries TV en provenance de la plateforme Betaseries.",
+    "icons": { "16": "icon.png", "48": "icon.png", "128": "icon.png" }
 }

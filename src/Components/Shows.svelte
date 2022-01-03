@@ -10,7 +10,6 @@
             `https://api.betaseries.com/shows/member?key=7ecf3f5a33dd&access_token=${token}&status=current`,
             { method: "GET" }
         );
-
         const shows = await res.json();
         return shows.shows;
     };
