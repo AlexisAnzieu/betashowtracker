@@ -36,7 +36,7 @@
         );
         const result = await res.json();
         const fetchedShows = result.shows ? result.shows : [result.show];
-        showsStore.update((shows) => [...fetchedShows, ...shows]);
+        showsStore.update((shows: any) => [...fetchedShows, ...shows]);
         toast.push("Série.s ajoutée.s", {
             duration: 3000,
             theme: {
