@@ -4,7 +4,7 @@
   <img style="width:20%" src="https://user-images.githubusercontent.com/11615615/148018980-32ba3be8-02ba-4641-beaa-02f8c83e7a0f.png" alt="Expo Ticket App preview" width="500" />
  </h1>
 
-<h4 align="center">Chrome extension to track your Betaseries shows.</h4>
+<h3 align="center" style="margin-bottom:15px">Unofficial chrome extension to track your Betaseries shows.</h3>
 
 <div align="center">
 
@@ -17,9 +17,51 @@
 </div>
 
 <p align="center">
-  <a href="#about">About</a>
+  <a href="#about">About</a> •
   <a href="#features">Features</a> •
-  <a href="#installation">Installation</a> •
+  <a href="#tiers">Tiers</a> •
+  <a href="#development">Installation</a>
 </p>
 
 ---
+
+## About
+
+Watching TV Shows on Betaseries is a great way to stay up to date with what's going on. However, it's not always easy to keep track of your shows. This extension is designed to help you keep track of your shows directly from your browser.
+
+## Features
+
+-   add shows to your watchlist (support bulk addings)
+-   mark shows as watched
+-   keep track of your shows
+
+## Development
+
+Download the projet, then run the following commands:
+
+```shell
+yarn install
+```
+
+```shell
+yarn dev
+```
+
+Then fo to [localhost:3000](http://localhost:3000). to see the extension in action, show inspect panel and resize window to 780px which is what the user will see. Add your features then run vite by typing:
+
+```
+yarn build
+```
+
+And put it in your browser following these [instructions](https://developer.chrome.com/docs/extensions/mv3/getstarted/).
+
+## Tiers
+
+-   **UX Components**: <a href="https://illright.github.io/attractions/">Attractions</a>
+-   **Language**: JS/Typescript/Svelte
+-   **Framework**: None
+-   **Date calculation**: <a href="https://day.js.org/">Dayjs</a>
+-   **Code bundler**: <a href="https://vitejs.dev/">Vite</a>
+-   **Progress Bar**: <a href="https://www.npmjs.com/package/@okrad/svelte-progressbar">Svelte Progress Bar</a>
+-   **Toasts**: <a href="https://www.npmjs.com/package/@zerodevx/svelte-toast">Svelte Toasts</a>
+-   **Icons**: <a href="https://www.npmjs.com/package/svelte-feather-icons">Svelte Feather Icons</a>
