@@ -17,7 +17,7 @@
 
     const getShows = async () => {
         const res = await fetch(
-            `https://api.betaseries.com/shows/member?key=7ecf3f5a33dd&access_token=${token}&status=current`,
+            `https://api.betaseries.com/shows/member?key=7ecf3f5a33dd&access_token=${token}&status=current&order=last_seen`,
             { method: "GET" }
         );
         const shows = await res.json();
