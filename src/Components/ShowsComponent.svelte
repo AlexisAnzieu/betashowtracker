@@ -48,9 +48,9 @@
     getShows();
 </script>
 
-{#await shows}
+{#if !shows}
     <Loading />
-{:then shows}
+{:else}
     {#each shows as show}
         <div style="margin: 10px;display:flex">
             <div style="width: 150px;">
@@ -102,9 +102,7 @@
         </div>
         <Divider />
     {/each}
-{:catch error}
-    <p style="color: red">{error.message}</p>
-{/await}
+{/if}
 
 <style>
 </style>

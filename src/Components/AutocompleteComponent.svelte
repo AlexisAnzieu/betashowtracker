@@ -36,11 +36,7 @@
         );
         const result = await res.json();
         const fetchedShows = result.shows ? result.shows : [result.show];
-        showsStore.update((shows) =>
-            [...shows, ...fetchedShows].sort((a, b) =>
-                a.title.localeCompare(b.title)
-            )
-        );
+        showsStore.update((shows) => [...fetchedShows, ...shows]);
         toast.push("Série.s ajoutée.s", {
             duration: 3000,
             theme: {
