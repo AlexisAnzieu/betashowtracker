@@ -4,6 +4,12 @@
     import ProgressBar from "@okrad/svelte-progressbar";
     import { SvelteToast, toast } from "@zerodevx/svelte-toast";
     import { tokenStore, showsStore } from "../stores";
+    import("dayjs/locale/fr");
+    import dayjs from "dayjs";
+    import relativeTime from "dayjs/plugin/relativeTime";
+
+    dayjs.extend(relativeTime);
+
     let token: string;
     tokenStore.subscribe((value) => {
         token = value;
@@ -72,7 +78,11 @@
                     </div>
                     <div style="width: 400px;">
                         <h3>{show.user.next.code} - {show.user.next.title}</h3>
-                        <p>Sortie le: {show.user.next.date}</p>
+                        <p>
+                            Sortie {dayjs(show.user.next.date)
+                                .locale("fr")
+                                .fromNow()}
+                        </p>
                     </div>
                 </div>
             </div>
