@@ -2,7 +2,7 @@
     import { Button, Loading, Divider } from "attractions";
     import { CheckIcon } from "svelte-feather-icons";
     import ProgressBar from "@okrad/svelte-progressbar";
-    import { SvelteToast, toast } from "@zerodevx/svelte-toast";
+    import { toast } from "@zerodevx/svelte-toast";
     import { tokenStore, showsStore } from "../stores";
     import("dayjs/locale/fr");
     import dayjs from "dayjs";
@@ -30,7 +30,8 @@
             { method: "POST" }
         );
         await res.json();
-        toast.push("Episode watched", {
+        getShows();
+        toast.push("Épisode visionné", {
             duration: 3000,
             theme: {
                 "--toastBackground": "#3B8DD0",
@@ -38,7 +39,6 @@
                 "--toastBarBackground": "#1d5482",
             },
         });
-        getShows();
     };
 
     let shows;
@@ -51,13 +51,12 @@
 {#await shows}
     <Loading />
 {:then shows}
-    <SvelteToast />
     {#each shows as show}
         <div style="margin: 10px;display:flex">
-            <div style="width: 180px;">
+            <div style="width: 150px;">
                 <img
-                    height="180px"
-                    src={show.images.poster || "https://picsum.photos/768/188"}
+                    height="150px"
+                    src={show.images.poster || "https://picsum.photos/102/150"}
                     alt=""
                 />
             </div>
@@ -77,8 +76,9 @@
                         </Button>
                     </div>
                     <div style="width: 400px;">
-                        <h3>{show.user.next.code} - {show.user.next.title}</h3>
-                        <p>
+                        <h3 style="margin: 3px;">{show.user.next.code}</h3>
+                        <h4 style="margin: 3px;">{show.user.next.title}</h4>
+                        <p style="margin: 10px 0px 0px 3px;">
                             Sortie {dayjs(show.user.next.date)
                                 .locale("fr")
                                 .fromNow()}

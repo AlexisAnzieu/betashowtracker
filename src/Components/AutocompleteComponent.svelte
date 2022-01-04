@@ -1,6 +1,7 @@
 <script lang="ts">
     import { Button } from "attractions";
     import { PlusIcon } from "svelte-feather-icons";
+    import { toast } from "@zerodevx/svelte-toast";
 
     import Autocomplete from "attractions/autocomplete/autocomplete.svelte";
 
@@ -18,7 +19,7 @@
         );
         const result = await res.json();
         const selectedShows = result.shows
-            .filter((show) => !show.user.next.id)
+            .filter((show) => !show.user.next.id && !show.user.archived)
             .map((show) => ({
                 name: show.title,
                 details: show.description,
@@ -40,12 +41,20 @@
                 a.title.localeCompare(b.title)
             )
         );
+        toast.push("Série.s ajoutée.s", {
+            duration: 3000,
+            theme: {
+                "--toastBackground": "#3B8DD0",
+                "--toastColor": "white",
+                "--toastBarBackground": "#1d5482",
+            },
+        });
         selection = [];
     };
 </script>
 
 <main style="display: flex;">
-    <div style="width: 500px;">
+    <div style="width: 500px;margin-bottom:30px">
         <Autocomplete
             minSearchLength={2}
             placeholder="Rechercher une série"
@@ -63,6 +72,3 @@
         </Button>
     </div>
 </main>
-
-<style>
-</style>

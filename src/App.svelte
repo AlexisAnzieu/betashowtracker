@@ -2,6 +2,7 @@
     import AutocompleteComponent from "./Components/AutocompleteComponent.svelte";
     import LoginComponent from "./Components/LoginComponent.svelte";
     import ShowsComponent from "./Components/ShowsComponent.svelte";
+    import { SvelteToast } from "@zerodevx/svelte-toast";
     import { tokenStore } from "./stores";
     let token = localStorage.getItem("tokenStore");
     tokenStore.subscribe((value) => {
@@ -10,6 +11,7 @@
 </script>
 
 <main>
+    <SvelteToast />
     <h2>Beta Show Tracker</h2>
     {#if !token}
         <LoginComponent />
