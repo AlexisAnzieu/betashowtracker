@@ -2,7 +2,7 @@
     import { Button, Loading, Divider } from "attractions";
     import { CheckIcon } from "svelte-feather-icons";
     import ProgressBar from "@okrad/svelte-progressbar";
-
+    import { SvelteToast, toast } from "@zerodevx/svelte-toast";
     import { tokenStore, showsStore } from "../stores";
     let token: string;
     tokenStore.subscribe((value) => {
@@ -23,8 +23,15 @@
             `https://api.betaseries.com/episodes/watched?key=7ecf3f5a33dd&access_token=${token}&id=${id}`,
             { method: "POST" }
         );
-
         await res.json();
+        toast.push("Episode watched", {
+            duration: 3000,
+            theme: {
+                "--toastBackground": "#3B8DD0",
+                "--toastColor": "white",
+                "--toastBarBackground": "#1d5482",
+            },
+        });
         getShows();
     };
 
@@ -38,6 +45,7 @@
 {#await shows}
     <Loading />
 {:then shows}
+    <SvelteToast />
     {#each shows as show}
         <div style="margin: 10px;display:flex">
             <div style="width: 180px;">
@@ -52,12 +60,11 @@
                     {show.title}
                 </h2>
 
-                <div style="width: 450px;display:flex">
+                <div style="width: 400px;display:flex;margin:20px">
                     <div style="width: 100px;display:flex">
                         <Button
                             filled
                             round
-                            style="margin:20px"
                             on:click={() => checkShow(show.user.next.id)}
                         >
                             <CheckIcon size="20" class="mr" />
@@ -65,13 +72,14 @@
                     </div>
                     <div style="width: 400px;">
                         <h3>{show.user.next.code} - {show.user.next.title}</h3>
+                        <p>Sortie le: {show.user.next.date}</p>
                     </div>
                 </div>
             </div>
             <div style="width: 100px;margin-top:50px">
                 <div style="width:100%;display:inline">
                     <ProgressBar
-                        textSize={150}
+                        textSize={100}
                         style="radial"
                         width={100}
                         series={{
