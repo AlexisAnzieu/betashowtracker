@@ -57,7 +57,7 @@
     <div style="width: 500px;margin-bottom:30px">
         <Autocomplete
             minSearchLength={2}
-            placeholder="Rechercher une série"
+            placeholder="Rechercher une nouvelle série"
             {getOptions}
             {selection}
         />
