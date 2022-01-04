@@ -1,7 +1,7 @@
 <br>
 
 <h1 align="center">
-  <img src="https://user-images.githubusercontent.com/11615615/146594532-b7aeb31d-5b52-43c8-8216-4183ce4e24a5.png" alt="Expo Ticket App preview" width="500" />
+  <img style="width:20%" src="https://user-images.githubusercontent.com/11615615/148018980-32ba3be8-02ba-4641-beaa-02f8c83e7a0f.png" alt="Expo Ticket App preview" width="500" />
  </h1>
 
 <h4 align="center">Chrome extension to track your Betaseries shows.</h4>
@@ -17,7 +17,7 @@
 </div>
 
 <p align="center">
-  <a href="#about">About</a> •
+  <a href="#about">About</a>
   <a href="#features">Features</a> •
   <a href="#installation">Installation</a> •
 </p>
